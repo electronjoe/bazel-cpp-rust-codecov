@@ -1,0 +1,14 @@
+# Enable platform-specific config (linux, macos, windows sections)
+common --enable_platform_specific_config
+
+# Sandbox mount pairs required by hermetic_cc_toolchain (Zig cache)
+build:linux --sandbox_add_mount_pair=/tmp
+build:macos --sandbox_add_mount_pair=/var/tmp
+build:windows --sandbox_add_mount_pair=C:\Temp
+
+# Build defaults
+build --incompatible_strict_action_env
+build --verbose_failures
+
+# Test defaults
+test --test_output=errors

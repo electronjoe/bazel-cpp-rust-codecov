@@ -1,0 +1,27 @@
+module(
+    name = "bazel_cpp_rust_hello",
+    version = "0.0.0",
+)
+
+# --- C++ via hermetic_cc_toolchain ---
+bazel_dep(name = "hermetic_cc_toolchain", version = "4.1.0")
+
+toolchains = use_extension(
+    "@hermetic_cc_toolchain//toolchain:ext.bzl",
+    "toolchains",
+)
+use_repo(toolchains, "zig_sdk")
+
+register_toolchains("@zig_sdk//toolchain/...")
+
+# --- Rust via rules_rust ---
+bazel_dep(name = "rules_rust", version = "0.68.1")
+
+rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
+rust.toolchain(
+    edition = "2021",
+    versions = ["1.85.0"],
+)
+use_repo(rust, "rust_toolchains")
+
+register_toolchains("@rust_toolchains//:all")
