@@ -1,5 +1,5 @@
 {
   "name": "Bazel C++/Rust",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-  "postCreateCommand": "sudo npm install -g @bazel/bazelisk"
+  "postCreateCommand": "sudo curl -fsSL -o /usr/local/bin/bazel https://github.com/bazelbuild/bazelisk/releases/latest/download/bazelisk-linux-amd64 && sudo chmod +x /usr/local/bin/bazel"
 }
