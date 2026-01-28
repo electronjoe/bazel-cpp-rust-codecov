@@ -1,3 +1,3 @@
 fn main() {
-    println!("Hello, World! (Rust)");
+    println!("{}", greeter::greet("World"));
 }

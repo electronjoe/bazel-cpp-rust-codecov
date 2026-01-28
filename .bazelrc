@@ -8,7 +8,19 @@ build:windows --sandbox_add_mount_pair=C:\Temp
 
 # Build defaults
 build --incompatible_strict_action_env
+build --action_env=PATH
+build --host_action_env=PATH
 build --verbose_failures
+
+# Prefer static linking (avoids shared library path issues in sandbox)
+build --dynamic_mode=off
 
 # Test defaults
 test --test_output=errors
+# NixOS: inherit PATH so test runner scripts can find bash
+test --test_env=PATH
+
+# Coverage
+coverage --combined_report=lcov
+coverage --experimental_use_llvm_covmap
+coverage --experimental_generate_llvm_lcov

@@ -1,4 +1,17 @@
+cc_library(
+    name = "greeter",
+    srcs = ["greeter.cpp"],
+    hdrs = ["greeter.h"],
+)
+
 cc_binary(
     name = "hello",
     srcs = ["main.cpp"],
+    deps = [":greeter"],
+)
+
+cc_test(
+    name = "greeter_test",
+    srcs = ["greeter_test.cpp"],
+    deps = [":greeter"],
 )
