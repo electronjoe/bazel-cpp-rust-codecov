@@ -1,0 +1,7 @@
+{
+  "name": "Bazel C++/Rust",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers-extra/features/bazelisk:1": {}
+  }
+}
