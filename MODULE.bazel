@@ -6,6 +6,13 @@ module(
 # --- C++ via hermetic_cc_toolchain ---
 bazel_dep(name = "hermetic_cc_toolchain", version = "4.1.0")
 
+# Patch hermetic_cc_toolchain to fix -u flag handling for coverage builds
+# See: https://github.com/uber/hermetic_cc_toolchain/issues/XXX
+single_version_override(
+    module_name = "hermetic_cc_toolchain",
+    patches = ["//patches:hermetic_cc_toolchain_fix_u_flag.patch"],
+)
+
 toolchains = use_extension(
     "@hermetic_cc_toolchain//toolchain:ext.bzl",
     "toolchains",
